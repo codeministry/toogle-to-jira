@@ -73,7 +73,7 @@ public class MocoConnectService {
 
         String absolutePath = "/Users/marcello.muscara/Development/codeministry/oss/moco-connect/src/main/resources";
 
-        Path backupPath = Paths.get(absolutePath + "/archive/" + filePrefix + ".csv");
+        Path backupPath = Paths.get(absolutePath + "/csv/archive/" + filePrefix + ".csv");
         Path originalPath = Paths.get(absolutePath + "/csv/time-entries.csv");
 
         Files.move(originalPath, backupPath, StandardCopyOption.REPLACE_EXISTING);
