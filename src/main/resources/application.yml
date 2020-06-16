@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: moco-connect
+
+server:
+  port: 0
+
+application:
+  settings:
+    moco:
+      url: https://encircle360.mocoapp.com
+      token: d0b62da1997f56635b3d9e66fd85ce5f
