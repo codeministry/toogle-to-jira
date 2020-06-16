@@ -66,7 +66,7 @@ public class MocoConnectService {
     }
 
     private void makeBackup() throws IOException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd--HH-mm")
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm")
                 .withLocale(Locale.GERMANY)
                 .withZone(ZoneId.systemDefault());
         String filePrefix = formatter.format(Instant.now());
