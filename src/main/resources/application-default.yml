@@ -1,0 +1,6 @@
+application:
+  settings:
+    moco:
+      token: your-moco-api-token
+    backup:
+      path: "your-backup-path"

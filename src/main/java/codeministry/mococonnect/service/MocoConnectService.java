@@ -101,7 +101,7 @@ public class MocoConnectService {
                 .hours(roundedDuration.doubleValue())
                 .build();
 
-        mocoClient.createTimeEntry(mocoTimeEntryDTO);
+        //mocoClient.createTimeEntry(mocoTimeEntryDTO);
 
         return mocoTimeEntryDTO;
     }
