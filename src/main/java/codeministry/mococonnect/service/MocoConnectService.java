@@ -59,6 +59,7 @@ public class MocoConnectService {
         for (String[] row : rows) {
             MocoTimeEntryDTO mocoTimeEntryDTO = createMocoTimeEntryDTO(row);
             if (mocoTimeEntryDTO != null) {
+                log.info(mocoTimeEntryDTO.toString());
                 sum += mocoTimeEntryDTO.getHours();
             }
         }
@@ -99,9 +100,8 @@ public class MocoConnectService {
                 .description(description)
                 .hours(roundedDuration.doubleValue())
                 .build();
-        //mocoClient.createTimeEntry(mocoTimeEntryDTO);
 
-        log.info(mocoTimeEntryDTO.toString());
+        mocoClient.createTimeEntry(mocoTimeEntryDTO);
 
         return mocoTimeEntryDTO;
     }
