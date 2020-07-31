@@ -9,3 +9,6 @@ application:
   settings:
     moco:
       url: https://encircle360.mocoapp.com
+      token: your-moco-api-token
+    backup:
+      path: "your-backup-path"
