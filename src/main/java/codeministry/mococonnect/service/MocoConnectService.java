@@ -9,7 +9,7 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
@@ -33,11 +33,15 @@ import java.util.Locale;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class MocoConnectService {
+    @Value("${application.settings.backup.path}")
+    private String backupDirectory;
+
+    private Resource importCsvResource;
+
     private final ResourceLoader resourceLoader;
     private final MocoClient mocoClient;
-    private Resource importCsvResource;
 
     @PostConstruct
     public void setUp() throws IOException, CsvException {
@@ -71,10 +75,8 @@ public class MocoConnectService {
                 .withZone(ZoneId.systemDefault());
         String filePrefix = formatter.format(Instant.now());
 
-        String absolutePath = "/Users/marcello.muscara/Development/codeministry/oss/moco-connect/src/main/resources";
-
-        Path backupPath = Paths.get(absolutePath + "/csv/archive/" + filePrefix + ".csv");
-        Path originalPath = Paths.get(absolutePath + "/csv/time-entries.csv");
+        Path backupPath = Paths.get(this.backupDirectory + "/" + filePrefix + ".csv");
+        Path originalPath = this.importCsvResource.getFile().toPath();
 
         Files.move(originalPath, backupPath, StandardCopyOption.REPLACE_EXISTING);
         Files.createFile(originalPath);
@@ -97,8 +99,9 @@ public class MocoConnectService {
                 .description(description)
                 .hours(roundedDuration.doubleValue())
                 .build();
+        //mocoClient.createTimeEntry(mocoTimeEntryDTO);
+
         log.info(mocoTimeEntryDTO.toString());
-        mocoClient.createTimeEntry(mocoTimeEntryDTO);
 
         return mocoTimeEntryDTO;
     }
