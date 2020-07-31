@@ -1,4 +1,4 @@
-package codeministry.mococonnect;
+package codeministry.mococonnect.config;
 
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
