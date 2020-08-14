@@ -62,6 +62,12 @@ public class MocoConnectService {
                 log.info(mocoTimeEntryDTO.toString());
                 sum += mocoTimeEntryDTO.getHours();
             }
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         BigDecimal roundedDuration = BigDecimal.valueOf(sum).setScale(2, RoundingMode.HALF_UP);
@@ -80,7 +86,6 @@ public class MocoConnectService {
         Path originalPath = this.importCsvResource.getFile().toPath();
 
         Files.move(originalPath, backupPath, StandardCopyOption.REPLACE_EXISTING);
-        Files.createFile(originalPath);
     }
 
     private MocoTimeEntryDTO createMocoTimeEntryDTO(final String[] row) {

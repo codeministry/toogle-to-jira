@@ -6,7 +6,11 @@ plugins {
 
 group = 'codeministry'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '14'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_14
+    targetCompatibility = JavaVersion.VERSION_14
+}
 
 configurations {
     compileOnly {
