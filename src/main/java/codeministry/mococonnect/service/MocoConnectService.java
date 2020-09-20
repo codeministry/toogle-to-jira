@@ -14,7 +14,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
@@ -43,14 +42,9 @@ public class MocoConnectService {
     private final ResourceLoader resourceLoader;
     private final MocoClient mocoClient;
 
-    @PostConstruct
-    public void setUp() throws IOException, CsvException {
+    public void importTimeEntries() throws IOException, CsvException {
         this.importCsvResource = resourceLoader.getResource("classpath:csv/time-entries.csv");
 
-        importTimeEntries();
-    }
-
-    private void importTimeEntries() throws IOException, CsvException {
         final CSVReader reader = createCsvReader();
         List<String[]> rows = reader.readAll();
 
