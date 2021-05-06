@@ -40,7 +40,7 @@ gradle-test:
 docker-build:
   stage: package
   only:
-    - master
+    - tags
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker pull $CONTAINER_IMAGE:latest || true
@@ -53,7 +53,7 @@ create-badges:
   stage: package
   image: python:3.6.6
   only:
-    - master
+    - tags
   script:
     - echo "Python other dependencies installation"
     - pip install anybadge #https://github.com/jongracecox/anybadge

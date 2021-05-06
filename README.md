@@ -1,8 +1,8 @@
-[![pipeline status](https://gitlab.com/codeministry-projects/oss/toogle-to-jira/badges/master/pipeline.svg)](https://gitlab.com/codeministry-projects/oss/toogle-to-jira/commits/master)
-[![latest version](https://gitlab.com/codeministry-projects/oss/toogle-to-jira/-/jobs/artifacts/master/raw/badges/latestversion.svg?job=create-badges)](https://gitlab.com/codeministry-projects/oss/toogle-to-jira/-/tags)
-[![commits](https://gitlab.com/codeministry-projects/oss/toogle-to-jira/-/jobs/artifacts/master/raw/badges/commits.svg?job=create-badges)](https://gitlab.com/codeministry-projects/oss/toogle-to-jira/-/commits)
-[![licence](https://gitlab.com/codeministry-projects/oss/toogle-to-jira/-/jobs/artifacts/master/raw/badges/license.svg?job=create-badges)](https://gitlab.com/codeministry-projects/oss/toogle-to-jira/-/blob/master/LICENSE)
-[![awesomeness](https://gitlab.com/codeministry-projects/oss/toogle-to-jira/-/jobs/artifacts/master/raw/badges/awesomeness.svg?job=create-badges)](https://codeministry.de)
+[![pipeline status](https://gitlab.com/codeministry-oss/toogle-to-jira/badges/master/pipeline.svg)](https://gitlab.com/codeministry-oss/toogle-to-jira/commits/master)
+[![latest version](https://gitlab.com/codeministry-oss/toogle-to-jira/-/jobs/artifacts/master/raw/badges/latestversion.svg?job=create-badges)](https://gitlab.com/codeministry-oss/toogle-to-jira/-/tags)
+[![commits](https://gitlab.com/codeministry-oss/toogle-to-jira/-/jobs/artifacts/master/raw/badges/commits.svg?job=create-badges)](https://gitlab.com/codeministry-oss/toogle-to-jira/-/commits)
+[![licence](https://gitlab.com/codeministry-oss/toogle-to-jira/-/jobs/artifacts/master/raw/badges/license.svg?job=create-badges)](https://gitlab.com/codeministry-oss/toogle-to-jira/-/blob/master/LICENSE)
+[![awesomeness](https://gitlab.com/codeministry-oss/toogle-to-jira/-/jobs/artifacts/master/raw/badges/awesomeness.svg?job=create-badges)](https://codeministry.de)
 
 # Toggl to Jira Cloud
 
@@ -45,10 +45,11 @@ Max,max@musterman.com,the client,your project,,STC-198 The task description,No,2
 #### OpenSource
 This is open source software. Use on your own risk and for personal use. If you need support or consultancy just contact me.
 
+[![codeministry](images/codeministry.png)](https://codeministry.de)
 
 #### ToDos:
+- "dockerize" app, incl. external file handling
 - add tests oO
-- "dockerize" app
 - more configuration to fit: e.g. CSV format, Jira settings, etc. 
 - more documentations & README
 - maybe use toggl tags?
