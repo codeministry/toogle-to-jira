@@ -11,15 +11,15 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @RequiredArgsConstructor
 public class JiraService {
-    @Value("${application.settings.jira.url}")
+    @Value("${toggl-to-jira.settings.jira.url}")
     private String url;
 
-    @Value("${application.settings.jira.path}")
+    @Value("${toggl-to-jira.settings.jira.path}")
     private String path;
 
     private final RestTemplate jiraRestTemplate;
 
-    public void addTimeEntry(final String issueId, final TimeEntry timeEntry) {
+    public void createTimeEntry(final String issueId, final TimeEntry timeEntry) {
         String apiUrl = this.url.concat(this.path);
         apiUrl = apiUrl.replace("{issueId}", issueId);
 

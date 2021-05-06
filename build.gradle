@@ -1,15 +1,15 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.1.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
 group = 'codeministry'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_14
-    targetCompatibility = JavaVersion.VERSION_14
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
 }
 
 configurations {
@@ -22,29 +22,35 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('springCloudVersion', "Hoxton.SR5")
-}
-
 dependencies {
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.0'
     implementation 'com.opencsv:opencsv:5.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-}
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
     useJUnitPlatform()
+
+    failFast = true
+    testLogging.showCauses(true)
+    testLogging.showExceptions(true)
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+compileJava {
+    options.compilerArgs = [
+            '-Amapstruct.unmappedTargetPolicy=ERROR'
+    ]
 }

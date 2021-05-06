@@ -1,0 +1,69 @@
+image: docker:git
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - package
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+  - export COMMITS=$(git rev-list --all --count)
+  - export LATEST_VERSION_TAG=$(git describe --tags)
+
+cache:
+  paths:
+    - .gradle/wrapper
+
+gradle-build:
+  stage: build
+  image: openjdk:16-jdk
+  script: "./gradlew clean build -x test"
+  artifacts:
+    paths:
+      - build/
+
+gradle-test:
+  stage: test
+  image: openjdk:16-jdk
+  script: "./gradlew test"
+  artifacts:
+    expire_in: '7 day'
+    reports:
+      junit:
+        - build/test-results/test/TEST-*.xml
+    paths:
+      - build/
+
+docker-build:
+  stage: package
+  only:
+    - master
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker pull $CONTAINER_IMAGE:latest || true
+    - docker pull $CONTAINER_IMAGE:$LATEST_VERSION_TAG || true
+    - docker build --cache-from $CONTAINER_IMAGE:latest -t $CI_REGISTRY_IMAGE:$LATEST_VERSION_TAG -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:$LATEST_VERSION_TAG
+
+create-badges:
+  stage: package
+  image: python:3.6.6
+  only:
+    - master
+  script:
+    - echo "Python other dependencies installation"
+    - pip install anybadge #https://github.com/jongracecox/anybadge
+    - echo commits $COMMITS latest_version $LATEST_VERSION_TAG
+    - mkdir badges
+    - anybadge -o -l "latest version" -v $LATEST_VERSION_TAG -f badges/latestversion.svg -c green
+    - anybadge -o -l "commits" -v $COMMITS -f badges/commits.svg -c lightgrey
+    - anybadge -o -l "licence" -v "Apache License" -f badges/license.svg -c yellowgreen
+    - anybadge -o -l "awesomeness" -v "110%" -f badges/awesomeness.svg -c orange
+    - ls -la
+  artifacts:
+    paths:
+      - badges/*.svg

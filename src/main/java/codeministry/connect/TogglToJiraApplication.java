@@ -1,25 +1,23 @@
 package codeministry.connect;
 
-import codeministry.connect.service.ApiConnectService;
+import codeministry.connect.service.TogglService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableFeignClients
 @SpringBootApplication
 @RequiredArgsConstructor
-public class ConnectApplication implements CommandLineRunner {
+public class TogglToJiraApplication implements CommandLineRunner {
 
-    private final ApiConnectService apiConnectService;
+    private final TogglService togglService;
 
     public static void main(String[] args) {
-        SpringApplication.run(ConnectApplication.class);
+        SpringApplication.run(TogglToJiraApplication.class);
     }
 
     @Override
     public void run(final String... args) throws Exception {
-        apiConnectService.importTimeEntries();
+        togglService.importTimeEntries();
     }
 }
