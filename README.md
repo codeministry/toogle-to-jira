@@ -8,8 +8,9 @@
 
 ### Import your toggl time tracks to as worklogs into Jira Cloud 
 
-As a freelancer, I like to use [toggl](https://track.toggl.com) to track my hours. Many of the projects I am involved in use Jira as project software. Therefore, I was looking for a simple way to transfer my hours quickly and easily as a worklog to Jira.
-I use the generated Jira key (e.g. `SLY-242`), which every task and story has, as a unique identification key in the description toggl.
+As a freelancer, I like to use [toggl](https://track.toggl.com) to track my hours. Many of the projects I am involved in use Jira as project software. Therefore,<br>
+I was looking for a simple way to transfer my hours quickly and easily as a worklog to Jira. I use the generated Jira key (e.g. `SLY-242`), <br>
+which every task and story has, as a unique identification key in the description toggl.
 
 [![Add time entry](images/toggl-time-entry.png)](https://track.toggl.com)
 
@@ -42,11 +43,6 @@ Max,max@musterman.com,the client,your project,,STC-198 The task description,No,2
 
 6. Check the worklogs in the Jira Cloud.
 
-#### OpenSource
-This is open source software. Use on your own risk and for personal use. If you need support or consultancy just contact me.
-
-[![codeministry](images/codeministry.png)](https://codeministry.de)
-
 #### ToDos:
 - "dockerize" app, incl. external file handling
 - add tests oO
@@ -54,3 +50,8 @@ This is open source software. Use on your own risk and for personal use. If you 
 - more documentations & README
 - maybe use toggl tags?
 - add more project platforms? 
+
+#### OpenSource
+This is open source software. Use on your own risk and for personal use. If you need support or consultancy just contact [me](https://codeministry.de).
+
+[![codeministry](images/codeministry.png)](https://codeministry.de)
