@@ -53,7 +53,7 @@ create-badges:
   stage: package
   image: python:3.6.6
   only:
-    - tags
+    - master
   script:
     - echo "Python other dependencies installation"
     - pip install anybadge #https://github.com/jongracecox/anybadge
