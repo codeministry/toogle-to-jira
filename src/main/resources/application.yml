@@ -7,8 +7,10 @@ server:
 
 application:
   settings:
-    moco:
-      url: https://encircle360.mocoapp.com
-      token: your-moco-api-token
+    jira:
+      url: https://your-jira-url.com
+      user-email: your-jra-email
+      api-key: your-api-token
+      path: /rest/api/3/issue/{issueId}/worklog
     backup:
-      path: "your-backup-path"
+      path: your-backup-path
