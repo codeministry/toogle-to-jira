@@ -11,7 +11,7 @@ stages:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
   - export COMMITS=$(git rev-list --all --count)
-  - export LATEST_VERSION_TAG=$CI_COMMIT_REF_NAME
+  #- export LATEST_VERSION_TAG=$CI_COMMIT_REF_NAME
   - echo LATEST_VERSION_TAG = $LATEST_VERSION_TAG
 
 cache:
@@ -23,6 +23,7 @@ gradle-build:
   image: openjdk:16-jdk
   script: "./gradlew clean build -x test"
   artifacts:
+    expire_in: '7 day'
     paths:
       - build/
 
@@ -54,7 +55,6 @@ create-badges:
   stage: package
   image: python:3.6.6
   only:
-    - master
     - tags
   script:
     - echo "Python other dependencies installation"

@@ -6,7 +6,9 @@
 
 # Toggl to Jira Cloud
 
-### Import your toggl time tracks to as worklogs into Jira Cloud 
+### Import your toggl time tracks to as worklogs into Jira Cloud
+
+![Add time entry](images/banner.png)
 
 As a freelancer, I like to use [toggl](https://track.toggl.com) to track my hours. Many of the projects I am involved in use Jira as project software. Therefore,<br>
 I was looking for a simple way to transfer my hours quickly and easily as a worklog to Jira. I use the generated Jira key (e.g. `SLY-242`), <br>
