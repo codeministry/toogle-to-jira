@@ -10,7 +10,7 @@
 
 As a freelancer, I like to use [toggl](https://track.toggl.com) to track my hours. Many of the projects I am involved in use Jira as project software. Therefore,<br>
 I was looking for a simple way to transfer my hours quickly and easily as a worklog to Jira. I use the generated Jira key (e.g. `SLY-242`), <br>
-which every task and story has, as a unique identification key in the description toggl.
+which every task and story has, as a unique identification key in the description of the toggl entry.
 
 [![Add time entry](images/toggl-time-entry.png)](https://track.toggl.com)
 
@@ -37,7 +37,7 @@ User,Email,Client,Project,Task,Description,Billable,Start date,Start time,End da
 Max,max@musterman.com,the client,your project,,STC-198 The task description,No,2021-04-07,09:25:02,2021-04-07,10:00:07,00:35:05,,
 ```
 
-4. Set `toggl-to-jira.settings.active: false` in `application.yml` - So you can make a "Dry Run" first and to test the output of your data without pushing them immediately to Jira.
+4. Set `toggl-to-jira.settings.active: false` in `application.yml` - So you can start a "dry run" first and test the output of your data without pushing them immediately to Jira.
 
 5. If everything is ok set `toggl-to-jira.settings.active: true` and start the application. It will automatically start a `CommandLineRunner` and process the data.
 
