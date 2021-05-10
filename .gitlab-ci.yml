@@ -52,7 +52,7 @@ docker-build:
     - docker push $CI_REGISTRY_IMAGE:$LATEST_VERSION_TAG
 
 create-badges:
-  stage: package
+  stage: build
   image: python:3.6.6
   only:
     - tags
