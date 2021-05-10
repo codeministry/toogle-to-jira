@@ -54,6 +54,7 @@ create-badges:
   stage: package
   image: python:3.6.6
   only:
+    - master
     - tags
   script:
     - echo "Python other dependencies installation"
