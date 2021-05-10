@@ -11,7 +11,7 @@ stages:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
   - export COMMITS=$(git rev-list --all --count)
-  #- export LATEST_VERSION_TAG=$CI_COMMIT_REF_NAME
+  - [ -z "$LATEST_VERSION_TAG" ] && export LATEST_VERSION_TAG=$CI_COMMIT_REF_NAME || export LATEST_VERSION_TAG=$LATEST_VERSION_TAG
   - echo LATEST_VERSION_TAG = $LATEST_VERSION_TAG
 
 cache:
