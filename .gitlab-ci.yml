@@ -65,7 +65,6 @@ create-badges:
     - anybadge -o -l "commits" -v $COMMITS -f badges/commits.svg -c lightgrey
     - anybadge -o -l "licence" -v "Apache License" -f badges/license.svg -c yellowgreen
     - anybadge -o -l "awesomeness" -v "110%" -f badges/awesomeness.svg -c orange
-    - ls -la
   artifacts:
     paths:
       - badges/*.svg
