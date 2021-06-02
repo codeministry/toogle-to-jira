@@ -1,6 +1,6 @@
 spring:
   application:
-    name: moco-connect
+    name: toggl-to-jira
 
 server:
   port: 0
