@@ -90,7 +90,7 @@ public class TogglService {
 
     private Duration createTimeEntry(final String[] row) {
         String description = row[5].trim();
-        if (description.isBlank() || !description.startsWith(descriptionPrefix)) {
+        if (description.isBlank()) {
             return Duration.ZERO;
         }
 
@@ -99,24 +99,30 @@ public class TogglService {
             return Duration.ZERO;
         }
 
+        if (description.startsWith(descriptionPrefix)) {
+            this.createTimeEntry(row, description, duration);
+        }
+
+        return duration;
+    }
+
+    private void createTimeEntry(final String[] row, final String description, final Duration duration) {
         String issueId = this.extractIssueId(description);
         String started = this.extractStartedDate(row);
 
         TimeEntry timeEntry = this.mapTimeEntry(description, started, duration);
-
         log.info("Issue {}: {} h {} m | {}", issueId, duration.toHoursPart(), duration.toMinutesPart(), row[11]);
-
-        if (active) {
-            jiraService.createTimeEntry(issueId, timeEntry);
-
-            try {
-                // Some kind of "rate limiting"
-                Thread.sleep(rateLimiting);
-            } catch (Exception ignore) {
-            }
+        if (!active) {
+            return;
         }
 
-        return duration;
+        jiraService.createTimeEntry(issueId, timeEntry);
+
+        try {
+            // Some kind of "rate limiting"
+            Thread.sleep(rateLimiting);
+        } catch (Exception ignore) {
+        }
     }
 
     private Duration extractDuration(final String duration) {
@@ -187,7 +193,7 @@ public class TogglService {
     private CSVReader createCsvReader() throws IOException {
         final CSVParser parser = new CSVParserBuilder()
                 .withSeparator(',')
-                .withIgnoreQuotations(true)
+                .withIgnoreQuotations(false)
                 .build();
 
         return new CSVReaderBuilder(new InputStreamReader(importCsvResource.getInputStream()))
