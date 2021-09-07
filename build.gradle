@@ -27,13 +27,13 @@ dependencies {
     implementation 'com.opencsv:opencsv:5.5'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
 
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
 
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
 }
 
 test {
@@ -54,4 +54,8 @@ compileJava {
     options.compilerArgs = [
             '-Amapstruct.unmappedTargetPolicy=ERROR'
     ]
+}
+
+jar {
+    enabled = false
 }
