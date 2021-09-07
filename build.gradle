@@ -57,5 +57,5 @@ compileJava {
 }
 
 jar {
-    enabled = false
+    archiveFileName = "toggl-to-jira.jar"
 }
