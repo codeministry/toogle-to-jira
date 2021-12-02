@@ -20,7 +20,7 @@ cache:
 
 gradle-build:
   stage: build
-  image: openjdk:16-jdk
+  image: openjdk:17-jdk
   script: "./gradlew clean build -x test"
   artifacts:
     expire_in: '7 day'
@@ -29,7 +29,7 @@ gradle-build:
 
 gradle-test:
   stage: test
-  image: openjdk:16-jdk
+  image: openjdk:17-jdk
   script: "./gradlew test"
   artifacts:
     expire_in: '7 day'
