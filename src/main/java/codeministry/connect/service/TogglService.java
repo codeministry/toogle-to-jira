@@ -27,7 +27,6 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -78,7 +77,7 @@ public class TogglService {
 
         List<Duration> durations = rows.stream()
                 .map(this::createTimeEntry)
-                .collect(Collectors.toList());
+                .toList();
 
         Duration sum = Duration.ZERO;
         for (Duration duration : durations) {
@@ -116,12 +115,12 @@ public class TogglService {
             return;
         }
 
-        jiraService.createTimeEntry(issueId, timeEntry);
-
         try {
+            jiraService.createTimeEntry(issueId, timeEntry);
             // Some kind of "rate limiting"
             Thread.sleep(rateLimiting);
-        } catch (Exception ignore) {
+        } catch (Exception e) {
+            log.error("CreateTimeEntry failed: issueId {} !", issueId, e);
         }
     }
 
